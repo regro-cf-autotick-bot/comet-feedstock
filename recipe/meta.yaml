@@ -1,5 +1,5 @@
 {% set name = "Comet" %}
-{% set version = "3.0.0" %}
+{% set version = "3.1.0" %}
 
 package:
   name: "{{ name|lower }}"
@@ -7,11 +7,11 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 6a20cee48fd0ac2f8cdb7e27b01fbc43fb618544532b5673df4293c8f280edde
+  sha256: 10d7a08e69f4232053364784f7244d1e53aedb9affdc29fc1d77e4868ed524c1
 
 build:
   number: 0
-  skip: true  # [win]
+  noarch: python
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
 
 requirements:
