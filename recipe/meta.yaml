@@ -6,20 +6,20 @@ package:
   version: "{{ version }}"
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 10d7a08e69f4232053364784f7244d1e53aedb9affdc29fc1d77e4868ed524c1
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
 
 requirements:
   host:
     - pip
-    - python >=3
+    - python {{ python_min }}
   run:
-    - python >=3
+    - python >={{ python_min }}
     - lxml >=2.3
     - twisted >=16.0.0
     - zope.interface >=4.1.1
@@ -36,6 +36,7 @@ test:
     - comet.validator
   requires:
     - setuptools
+    - python {{ python_min }}
   commands:
     - comet-sendvo --help
     - python -m twisted.trial comet
